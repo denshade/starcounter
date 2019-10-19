@@ -12,7 +12,13 @@ public class GreyscaleThresholdStarDetection extends StarDetection
 
     //if left is bright or top is bright, then already counted.
     public boolean isProbableStar(Raster data, int x, int y) {
-        boolean previousIsBright = false;
+        boolean previousIsBright = dedupe(data, x, y);
+        return (!previousIsBright && isBright(getRgb(data, x, y )));
+    }
+
+    private boolean dedupe(Raster data, int x, int y) {
+        return false;
+        /*boolean previousIsBright = false;
         if (y > 1) {
             if (isBright(getRgb(data, x, y - 1)))
             {
@@ -25,7 +31,7 @@ public class GreyscaleThresholdStarDetection extends StarDetection
                 previousIsBright = true;
             }
         }
-        return (!previousIsBright && isBright(getRgb(data, x, y )));
+        return previousIsBright;*/
     }
 
     boolean isBright(StarCounter.RGB rgb)
